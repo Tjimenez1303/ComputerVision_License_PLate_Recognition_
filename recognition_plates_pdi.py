@@ -174,4 +174,6 @@ while ret:
             # cv2.imshow('threshold',license_plate_crop_thresh)
             # cv2.waitKey(0)
 
+            #! MINUTO 30:17
+
 
