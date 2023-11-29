@@ -1,0 +1,36 @@
+# Ignora los archivos de configuración local
+*.ini
+
+# Ignora los archivos de registro
+*.log
+
+# Ignora los archivos temporales
+*.tmp
+
+# Ignora los directorios de paquetes de Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Ignora los archivos de entorno virtual de Python
+.venv/
+
+# Ignora los archivos de Visual Studio Code
+.vscode/
+
+# Ignora el repositorio externo
+sort/
+
+# Ignora la carpeta License-Plate-Recognition-4
+License-Plate-Recognition-4/
+
+# Ignora el archivo sample#.mp4
+sample.mp4
+sample2.mp4
+sample3.mp4
