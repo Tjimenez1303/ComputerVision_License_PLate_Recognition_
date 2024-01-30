@@ -4,45 +4,33 @@ import cv2
 from roboflow import Roboflow
 from ultralytics import YOLO
 from sort.sort import * # Librería para el seguimiento de objetos
-import tensorflow as tf
 
 #load models
 #coco_model = YOLO("yolov8n.pt")
 
 from util import get_car, read_license_plate, write_csv
 
-# Configurar TensorFlow para usar la GPU
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
-    try:
-        # Actualmente, la memoria de la GPU se consume en su totalidad al inicio del proceso. 
-        # Para permitir el crecimiento de la memoria de la GPU, se puede configurar como "crecimiento de la memoria".
-        for gpu in gpus:
-            tf.config.experimental.set_memory_growth(gpu, True)
-        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
-    except RuntimeError as e:
-        # El crecimiento de la memoria debe configurarse antes de que se inicialicen los dispositivos GPU
-        print(e)
-
 #!################################################# Cargamos el video ###############################################################
-cap = cv2.VideoCapture('./sample5.mp4')
+cap = cv2.VideoCapture('./Prueba8.mp4')
 print("Video cargado")
 
 
 #!################################################ Obtiene el Dataset y modelo de Roboflow ###########################################
 
 # Key para acceder a la API de Roboflow que permitirá hacer solicitudes a la API de Roboflow
-rf = Roboflow(api_key="Eyx3RPONOhgIHaM14u2O")
+rf = Roboflow(api_key="bI8GBR2NCvmj7npESqOi")
 
 # Seleccionamos el proyecto de License Plate Recognition
-project = rf.workspace("roboflow-universe-projects").project("license-plate-recognition-rxg4e")
+#project = rf.workspace("roboflow-universe-projects").project("license-plate-recognition-rxg4e")
+project = rf.workspace().project("license-plate-recognition-rxg4e")
 
 # Descargamos la versión 4 del Dataset en formato YOLOV8
 #dataset = project.version(4).download("yolov8")
 
 # Obtiene el modelo asociado a la versión 4 del Dataset
 model = project.version(4).model
+
+
 
 #!################################################################### Pruebas ###########################################################
 
@@ -83,7 +71,7 @@ results = {}
 while ret:
   frame_nmr += 1
   ret, frame = cap.read()
-  if ret:
+  if ret and frame_nmr:
         results[frame_nmr] = {} # Gurda cada fotograma de la imagen en un diccionario
         #?########################################### Detección de vehículos ################################
         detections = coco_model(frame)[0]
