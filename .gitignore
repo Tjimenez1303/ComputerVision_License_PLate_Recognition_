@@ -37,3 +37,9 @@ sample3.mp4
 
 # Ignora todos los archivos .mp4
 *.mp4
+
+# Ignora todos los archivos .jpg
+*.jpg
+
+# Ignora todos los archivos csv
+*.csv
